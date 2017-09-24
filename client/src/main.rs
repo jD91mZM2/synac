@@ -229,7 +229,7 @@ fn main() {
                     usage!(1, "connect <ip[:port]>");
                     let mut session = session.lock().unwrap();
                     if session.is_some() {
-                        println!("Please disconnect first");
+                        println!("You have to disconnect before doing that.");
                         continue;
                     }
                     *session = connect::connect(&db.lock().unwrap(), &args[0], &nick, &screen, &ssl);
@@ -248,7 +248,7 @@ fn main() {
                     let addr = match parse_ip(&args[0]) {
                         Some(some) => some,
                         None => {
-                            println!("Not a valid IP");
+                            println!("Invalid IP");
                             continue;
                         }
                     };
@@ -286,7 +286,7 @@ fn main() {
                                 unassignable: false
                             })
                         },
-                        _ => { println!("Can't create that"); continue; }
+                        _ => { println!("Unable to create that"); continue; }
                     };
                     if let Err(err) = common::write(&mut session.stream, &packet) {
                         println!("Failed to send packet");
@@ -381,17 +381,17 @@ fn main() {
                             }))
                         } else { None },
                         _ => {
-                            println!("Can't delete that");
+                            println!("Unable to delete that");
                             continue;
                         }
                     };
                     if let Some(packet) = packet {
                         if let Err(err) = common::write(&mut session.stream, &packet) {
-                            println!("Oh no could not delete");
+                            println!("Unable to delete");
                             println!("{}", err);
                         }
                     } else {
-                        println!("Nothing with that ID");
+                        println!("Nothing with that ID exists");
                     }
                 },
                 "delete" => {
@@ -423,17 +423,17 @@ fn main() {
                                 id: id
                             })),
                         _ => {
-                            println!("Can't delete that");
+                            println!("Unable to delete that");
                             continue;
                         }
                     };
                     if let Some(packet) = packet {
                         if let Err(err) = common::write(&mut session.stream, &packet) {
-                            println!("Oh no could not delete");
+                            println!("Unable to delete");
                             println!("{}", err);
                         }
                     } else {
-                        println!("Nothing with that ID");
+                        println!("Nothing with that ID exists");
                     }
                 },
                 "list" => {
@@ -487,7 +487,7 @@ fn main() {
                             }
                             println!("{}", result);
                         },
-                        _ => println!("Can't list that")
+                        _ => println!("Unable to list that")
                     }
                 },
                 "info" => {
@@ -585,7 +585,7 @@ fn main() {
 
         match *session.lock().unwrap() {
             None => {
-                println!("You're not connected to a server");
+                println!("You are not connected to a server");
                 continue;
             },
             Some(ref mut session) => {
