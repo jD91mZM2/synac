@@ -124,7 +124,7 @@ config.danger_connect_without_providing_domain_for_certificate_verification_and_
                 id = Some(login.id);
                 if login.created {
                     println!("Tried to log in with your token: Apparently an account was created.");
-                    println!("I think you should stay away from this server. It's wierd.");
+                    println!("I think you should stay away from this server. It's weird.");
                     return None;
                 }
                 println!("Logged in as user #{}", login.id);
