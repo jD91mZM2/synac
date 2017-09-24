@@ -124,7 +124,7 @@ config.danger_connect_without_providing_domain_for_certificate_verification_and_
                 id = Some(login.id);
                 if login.created {
                     println!("Tried to log in with your token: Apparently an account was created.");
-                    println!("I think you should stay away from this server. Something is not quite right.");
+                    println!("I think you should stay away from this server. It's wierd.");
                     return None;
                 }
                 println!("Logged in as user #{}", login.id);
@@ -214,12 +214,12 @@ config.danger_connect_without_providing_domain_for_certificate_verification_and_
                     return None;
                 },
                 _ => {
-                    println!("The server responded with an invalid error.");
+                    println!("The server responded with an invalid error. :/");
                     return None;
                 }
             },
             Ok(_) => {
-                println!("The server responded with an invalid packet.");
+                println!("The server responded with an invalid packet. :/");
                 return None;
             }
             Err(err) => {
