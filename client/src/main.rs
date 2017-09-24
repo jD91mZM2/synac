@@ -720,6 +720,6 @@ fn parse_ip(input: &str) -> Option<SocketAddr> {
     use std::net::ToSocketAddrs;
     match (ip, port).to_socket_addrs() {
         Ok(mut ok) => ok.next(),
-        Err(_) => { eprintln!(":("); None }
+        Err(_) => { println!(":("); None }
     }
 }
